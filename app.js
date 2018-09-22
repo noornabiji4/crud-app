@@ -9,10 +9,30 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Passport Configure
+app.use(require("express-session")({
+  secret: "ast u",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+ 
+// use static authenticate method of model in LocalStrategy
+passport.use(new LocalStrategy(db.User.authenticate()));
+ 
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(db.User.serializeUser());
+passport.deserializeUser(db.User.deserializeUser());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+// requires the model with Passport-Local Mongoose plugged in
+const db = require('./models');
 
+
+//Parsar application json
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(logger('dev'));
 app.use(express.json());
