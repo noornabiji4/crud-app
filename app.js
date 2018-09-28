@@ -6,6 +6,9 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var methodOverride = require('method-override')
+var passport = require('passport')
+var LocalStrategy = require('passport-local');
 
 var app = express();
 
@@ -17,19 +20,22 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+const db = require('./models');
+
  
-// use static authenticate method of model in LocalStrategy
-passport.use(new LocalStrategy(db.User.authenticate()));
+// // use static authenticate method of model in LocalStrategy
+// passport.use(new LocalStrategy(db.User.authenticate()));
  
-// use static serialize and deserialize of model for passport session support
-passport.serializeUser(db.User.serializeUser());
-passport.deserializeUser(db.User.deserializeUser());
+// // use static serialize and deserialize of model for passport session support
+// passport.serializeUser(db.User.serializeUser());
+// passport.deserializeUser(db.User.deserializeUser());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 // requires the model with Passport-Local Mongoose plugged in
-const db = require('./models');
+
 
 
 //Parsar application json
@@ -40,8 +46,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/public',express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true , saveUninitialized :true }));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
