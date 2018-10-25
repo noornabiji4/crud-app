@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 // profile home route
-router.post('/', loggedIn ,(req, res) => {
+router.post('/' ,(req, res) => {
     db.Profile.create(req.body)
         .then(res.redirect('/home'))
         .catch((err) => res.send(err))
