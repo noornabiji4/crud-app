@@ -1,0 +1,37 @@
+<% include ./partials/header.ejs %>
+
+<!-- Default form register -->
+<form class="Login text-center border border-light p-5"  action="/users/login/" method="POST">
+
+        <p class="h4 mb-4">Login</p>
+    
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- First name -->
+                <input type="text" id="userName" name="username" class="form-control" placeholder="username">
+            </div>
+            <div class="col">
+                <!-- Last name -->
+                <input type="password" id="userpassword" name="password" class="form-control" placeholder="Enter Password">
+            </div>
+        </div>
+    
+       
+    
+        <!-- Sign up button -->
+        <button class="btn btn-info my-4 btn-block submit" type="submit"><a>login</a></button>
+
+
+    
+      
+    </form>
+    <!-- Default form register -->
+
+
+
+
+
+
+
+
+<% include ./partials/footer.ejs %>
