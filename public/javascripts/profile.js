@@ -19,7 +19,7 @@ profile.new = function(){
     $(".new").on("click", function (){
         // console.log(id._id);
         $("#addProfile").show();
-        window.location = '/profile'
+        window.location = '/home'
     })
 }
 profile.update = function (){
