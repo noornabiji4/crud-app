@@ -1,0 +1,38 @@
+<% include ./partials/header.ejs %>
+
+<form class="text-center border border-light p-5" id="addU" action="/home" method="POST">
+
+    <p class="h4 mb-4">Add New profile</p>
+    
+    <div class="form-row mb-4">
+        <div class="col">
+            <input id="add1" type="text" name="fullName" class="form-control" placeholder="Full Name">
+        </div>
+        <div class="col">
+            <input id="add2" type="text" name="emailId" class="form-control" placeholder="E-Mail Id">
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col">
+
+            <input id="add3" type="text" name="phoneNumber" class="form-control" placeholder="Phone Number">
+        </div>
+        <div class="col">
+
+            <input id="add4" type="text" name="address" class="form-control" placeholder="Address">
+        </div>
+    </div>
+
+    <input id="add5" type="text" name="image" class="form-control mb-4" placeholder="Image URL">
+    <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
+
+</form>
+<div class="content"></div>
+<script>
+$('#addU').hide()
+</script>
+
+<script src="/public/javascripts/profile.js"></script>
+
+
+<% include ./partials/footer.ejs %>
